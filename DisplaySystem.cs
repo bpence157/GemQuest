@@ -45,7 +45,7 @@ public class DisplaySystem
             }
         }
 
-        Console.WriteLine("Please type \"fighter\" or \"knight\" to choose a class. A fighter starts with higher Strength but lower Health, while a knight starts with " +
+        Console.WriteLine("Please type \"fighter\", \"knight\", \"mage\", or \"rogue\" to choose a class. A fighter starts with higher Strength but lower Health, while a knight starts with " +
             "higher Health, but lower Strength.");
         while (true)
         {
@@ -64,6 +64,18 @@ public class DisplaySystem
                 Console.WriteLine();
                 break;
             }
+            if (playerEntry == "mage")
+            {
+                playerChosenClass = "Mage";
+                Console.WriteLine();
+                break;
+            }
+            if (playerEntry == "rogue")
+            {
+                playerChosenClass = "Rogue";
+                Console.WriteLine();
+                break;
+            }
             else
             {
                 Console.WriteLine("Sorry, I did not understand that. Please try again.");
@@ -72,13 +84,26 @@ public class DisplaySystem
 
         Console.WriteLine($"{playerChosenName}, you are a {playerChosenClass}.");
         Console.WriteLine();
+
         if (playerChosenClass == "Fighter")
         {
-            return new Player(playerChosenName, "Fighter", 5, 7, inventorySystem, playerPosition);
+            return new Player(playerChosenName, "Fighter", 5, 7, 5, 6, inventorySystem, playerPosition);
+        }
+        if (playerChosenClass == "Knight")
+        {
+            return new Player(playerChosenName, "Knight", 10, 5, 6, 3, inventorySystem, playerPosition);
+        }
+        if (playerChosenClass == "Mage")
+        {
+            return new Player(playerChosenName, "Mage", 4, 3, 8, 7, inventorySystem, playerPosition);
+        }
+        if (playerChosenClass == "Rogue")
+        {
+            return new Player(playerChosenName, "Rogue", 5, 4, 6, 8, inventorySystem, playerPosition);
         }
         else
         {
-            return new Player(playerChosenName, "Knight", 10, 4, inventorySystem, playerPosition);
+            return null;
         }
 
     }
@@ -86,7 +111,28 @@ public class DisplaySystem
     public static void DisplayHelp()
     {
         Console.WriteLine("HELP:");
-        Console.WriteLine("\"inventory\" - Brings up player inventory");
-        Console.WriteLine("\"exit\" - Exits game");
+        Console.WriteLine("\"inventory\" - Brings up player inventory.");
+        Console.WriteLine("\"exit\" - Exits help menu.");
+        Console.WriteLine("\"stats\" - Display player stats.");
+    }
+
+    public static void DisplayPlayerStats(Player player)
+    {
+        Console.WriteLine();
+        Console.WriteLine(player.PlayerName);
+        Console.WriteLine("---------");
+        Console.WriteLine("Player Class: " + player.PlayerClass);
+        Console.WriteLine("Player Health: " + player.PlayerHealth);
+        Console.WriteLine("---------");
+        Console.WriteLine("Player Strength: " + player.PlayerStrength);
+        Console.WriteLine("Player Intelligence: " + player.PlayerIntelligence);
+        Console.WriteLine("Player Agility: " + player.PlayerAgility);
+        Console.WriteLine("---------");
+        Console.WriteLine($"Player Position: ({player.PlayerPosition.XCoordinates}, {player.PlayerPosition.YCoordinates})");
+        Console.WriteLine();
+    }
+    public static void DisplayPlayerInventory(Player player)
+    {
+
     }
 }

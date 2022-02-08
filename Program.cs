@@ -19,13 +19,21 @@ while (true)
 
     //Player movement
     string userEntry = DisplaySystem.RequestMovementFromPlayer();
-    if(userEntry == "help")
+    if (userEntry == "help")
     {
         DisplaySystem.DisplayHelp();
     }
-    else if(userEntry == "n")
+    else if (userEntry == "stats")
     {
-        if((player.PlayerPosition.YCoordinates + 1) > 9)
+        DisplaySystem.DisplayPlayerStats(player);
+    }
+    else if (userEntry == "inventory")
+    {
+        DisplaySystem.DisplayPlayerInventory(player);
+    }
+    else if (userEntry == "n")
+    {
+        if ((player.PlayerPosition.YCoordinates + 1) > 9)
         {
             Console.WriteLine("You cannot move any further in that direction.");
         }
